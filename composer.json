@@ -1,4 +1,19 @@
 {
+    "name": "jeroennoten/laravel-pages",
+    "description": "Laravel pages",
+    "keywords": ["laravel", "pages", "cms"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeroen Noten",
+            "email": "jeroennoten@me.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JeroenNoten\\LaravelPages\\": "src/"
+        }
+    },
     "require": {
         "jeroennoten/laravel-adminlte": "^1.6",
         "jeroennoten/laravel-package-helper": "^1.0"
