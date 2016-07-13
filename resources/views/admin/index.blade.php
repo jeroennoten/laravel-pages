@@ -1,0 +1,1 @@
+@extends('pages::admin.layouts.master')
