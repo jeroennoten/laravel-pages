@@ -16,6 +16,6 @@
     },
     "require": {
         "jeroennoten/laravel-adminlte": "^1.6",
-        "jeroennoten/laravel-package-helper": "^1.0"
+        "jeroennoten/laravel-package-helper": "^2.0"
     }
 }

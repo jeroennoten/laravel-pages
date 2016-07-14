@@ -11,10 +11,6 @@ class ServiceProvider extends BaseServiceProvider
 {
     use Migrations, Views;
 
-    protected $path = __DIR__ . '/..';
-
-    protected $name = 'pages';
-
     public function boot(Routing $routing, Contents $contents)
     {
         $this->publishMigrations();
@@ -28,5 +24,15 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->app->register(AdminLteServiceProvider::class);
         $this->app->singleton(Contents::class);
+    }
+
+    protected function path(): string
+    {
+        return __DIR__ . '/..';
+    }
+
+    protected function name(): string
+    {
+        return 'pages';
     }
 }
