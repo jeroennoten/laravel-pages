@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use JeroenNoten\LaravelPages\Models\Page;
 use JeroenNoten\LaravelPages\Models\View;
-use JeroenNoten\LaravelPages\Page;
 
 class CopyPagesToViews extends Migration {
 
