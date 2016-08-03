@@ -2,7 +2,9 @@
 
 namespace JeroenNoten\LaravelPages;
 
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
 use JeroenNoten\LaravelCkEditor\ServiceProvider as CkEditorServiceProvider;
 use JeroenNoten\LaravelPackageHelper\ServiceProviderTraits\Assets;
@@ -18,7 +20,7 @@ class ServiceProvider extends BaseServiceProvider
 {
     use Migrations, Views, Config, Assets;
 
-    public function boot(Routing $routing)
+    public function boot(Routing $routing, Dispatcher $events)
     {
         $this->publishMigrations();
         $this->loadViews();
@@ -32,6 +34,13 @@ class ServiceProvider extends BaseServiceProvider
         ContentProviders::register(new StringProvider);
         ContentProviders::register(new HtmlProvider);
         ContentProviders::register(new ViewProvider);
+
+        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+            $event->menu->add([
+                'text' => 'Pagina\'s',
+                'url' => 'admin/pages'
+            ]);
+        });
     }
 
     public function register()
