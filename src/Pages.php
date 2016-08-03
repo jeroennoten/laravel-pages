@@ -4,16 +4,36 @@
 namespace JeroenNoten\LaravelPages;
 
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\QueryException;
+use JeroenNoten\LaravelPages\Models\Page;
 
 class Pages
 {
+    private $pages;
+
     public function all()
     {
+        if (is_null($this->pages)) {
+            $this->loadAll();
+        }
+        return $this->pages;
+    }
+
+    public function allWithTitles()
+    {
+        return $this->all()->load(['view.contents' => function (HasMany $query) {
+            $query->where('section', 'title');
+        }]);
+    }
+
+    public function loadAll()
+    {
         try {
-            return Page::all();
+            $this->pages = Page::all();
         } catch (QueryException $e) {
-            return [];
+            $this->pages = [];
         }
     }
 
@@ -23,6 +43,8 @@ class Pages
      */
     public function getByUri($uri)
     {
-        return Page::where('uri', $uri)->first();
+        /** @var Page $page */
+        $page = Page::where('uri', $uri)->first();
+        return $page;
     }
 }

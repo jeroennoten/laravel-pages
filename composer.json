@@ -16,6 +16,8 @@
     },
     "require": {
         "jeroennoten/laravel-adminlte": "^1.6",
-        "jeroennoten/laravel-package-helper": "^2.0"
+        "jeroennoten/laravel-package-helper": "^2.0",
+        "jeroennoten/laravel-ckeditor": "^3.0",
+        "doctrine/dbal": "^2.5"
     }
 }
