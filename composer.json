@@ -19,5 +19,8 @@
         "jeroennoten/laravel-package-helper": "^2.0",
         "jeroennoten/laravel-ckeditor": "^3.0",
         "doctrine/dbal": "^2.5"
+    },
+    "require-dev": {
+        "jeroennoten/laravel-menu": "^1.0"
     }
 }

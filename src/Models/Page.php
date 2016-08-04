@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string layout
  * @property Collection contents
  * @property View view
+ * @property mixed title
+ * @property mixed uri
  */
 class Page extends Model
 {

@@ -4,6 +4,7 @@
 namespace JeroenNoten\LaravelPages;
 
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\QueryException;
@@ -13,6 +14,9 @@ class Pages
 {
     private $pages;
 
+    /**
+     * @return Collection
+     */
     public function all()
     {
         if (is_null($this->pages)) {
@@ -21,6 +25,9 @@ class Pages
         return $this->pages;
     }
 
+    /**
+     * @return Collection
+     */
     public function allWithTitles()
     {
         return $this->all()->load(['view.contents' => function (HasMany $query) {
