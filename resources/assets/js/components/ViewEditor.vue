@@ -6,12 +6,10 @@
                 <div class="box-tools pull-right">
                     <button type="button"
                             class="btn btn-box-tool"
-                            data-toggle="tooltip"
-                            title="Verwijderen"
                             @click="remove"
                             v-if="removeable"
                     >
-                        <i class="fa fa-trash"></i>
+                        <i class="fa fa-trash"></i> Verwijderen
                     </button>
                 </div>
             </div>

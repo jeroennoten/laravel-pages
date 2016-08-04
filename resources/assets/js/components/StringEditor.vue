@@ -4,10 +4,8 @@
         <button class="btn btn-danger btn-xs btn-flat"
                 type="button"
                 @click="remove"
-                data-toggle="tooltip"
-                title="Verwijderen"
         >
-            <i class="fa fa-fw fa-trash"></i>
+            <i class="fa fa-fw fa-trash"></i> Verwijderen
         </button>
     </div>
 </template>
