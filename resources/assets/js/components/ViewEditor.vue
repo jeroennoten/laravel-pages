@@ -8,8 +8,10 @@
                             class="btn btn-box-tool"
                             @click="remove"
                             v-if="removeable"
+                            data-toggle="tooltip"
+                            title="Verwijderen"
                     >
-                        <i class="fa fa-trash"></i> Verwijderen
+                        <i class="fa fa-trash"></i>
                     </button>
                 </div>
             </div>

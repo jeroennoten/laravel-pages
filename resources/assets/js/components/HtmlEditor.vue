@@ -5,8 +5,10 @@
                 style="position: absolute; top: 0; right: 0;"
                 type="button"
                 @click="remove"
+                data-toggle="tooltip"
+                title="Verwijderen"
         >
-            <i class="fa fa-fw fa-trash"></i> Verwijderen
+            <i class="fa fa-fw fa-trash"></i>
         </button>
     </p>
 </template>
