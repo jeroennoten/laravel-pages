@@ -38,7 +38,7 @@ class Routing
         $this->router->group([
             'prefix' => 'admin/pages',
             'as' => 'admin.pages.',
-            'middleware' => 'web',
+            'middleware' => ['web', 'auth'],
             'namespace' => 'Admin',
         ], function (Router $router) {
 
