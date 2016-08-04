@@ -11,7 +11,7 @@
                             @click="remove"
                             v-if="removeable"
                     >
-                        <i class="fa fa-times"></i>
+                        <i class="fa fa-trash"></i>
                     </button>
                 </div>
             </div>

@@ -1,6 +1,12 @@
 <template>
     <div>
         <textarea name="test" class="form-control" v-el:ckeditor :value="content"></textarea>
+        <button class="btn btn-danger btn-xs"
+                type="button"
+                @click="remove"
+        >
+            <i class="fa fa-fw fa-trash"></i> Verwijderen
+        </button>
     </div>
 </template>
 
@@ -16,6 +22,9 @@
         methods: {
             update(value) {
                 this.$emit('update', value);
+            },
+            remove() {
+                this.$emit('remove');
             }
         }
     }
