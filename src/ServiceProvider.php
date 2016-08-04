@@ -67,7 +67,7 @@ class ServiceProvider extends BaseServiceProvider
     private function registerPagesForMenu()
     {
         if (class_exists('JeroenNoten\\LaravelMenu\\Pages\\Registrar')) {
-            Registrar::register(new MenuPagesProvider);
+            Registrar::register(app(MenuPagesProvider::class));
         }
     }
 }
