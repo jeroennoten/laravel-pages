@@ -3,6 +3,7 @@
 namespace JeroenNoten\LaravelPages;
 
 use Illuminate\Routing\Router;
+use PDOException;
 
 class Routing
 {
@@ -28,8 +29,11 @@ class Routing
 
     private function registerPageRoutes()
     {
-        foreach ($this->pages->all() as $page) {
-            $this->router->get($page->uri, 'PageController@show');
+        try {
+            foreach ($this->pages->all() as $page) {
+                $this->router->get($page->uri, 'PageController@show');
+            }
+        } catch (PDOException $e) {
         }
     }
 

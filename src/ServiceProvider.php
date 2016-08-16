@@ -2,12 +2,14 @@
 
 namespace JeroenNoten\LaravelPages;
 
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use JeroenNoten\LaravelAdminLte\ServiceProvider as AdminLteServiceProvider;
 use JeroenNoten\LaravelCkEditor\ServiceProvider as CkEditorServiceProvider;
 use JeroenNoten\LaravelMenu\Pages\Registrar;
+use JeroenNoten\LaravelPackageHelper\ServiceProviderTraits;
 use JeroenNoten\LaravelPackageHelper\ServiceProviderTraits\Assets;
 use JeroenNoten\LaravelPackageHelper\ServiceProviderTraits\Config;
 use JeroenNoten\LaravelPackageHelper\ServiceProviderTraits\Migrations;
@@ -20,7 +22,7 @@ use JeroenNoten\LaravelPages\ContentProviders\ViewProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    use Migrations, Views, Config, Assets;
+    use ServiceProviderTraits;
 
     public function boot(Routing $routing, Dispatcher $events)
     {
@@ -69,5 +71,15 @@ class ServiceProvider extends BaseServiceProvider
         if (class_exists('JeroenNoten\\LaravelMenu\\Pages\\Registrar')) {
             Registrar::register(app(MenuPagesProvider::class));
         }
+    }
+
+    /**
+     * Return the container instance
+     *
+     * @return Container
+     */
+    protected function getContainer()
+    {
+        return $this->app;
     }
 }
