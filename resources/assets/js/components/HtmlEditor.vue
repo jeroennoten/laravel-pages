@@ -41,8 +41,8 @@
                     "groups": ["about"]
                 }],
                 "removeButtons": "Save,NewPage,Preview,Print,Templates,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Flash,Smiley,PageBreak,Iframe",
-                "filebrowserImageUploadUrl": "http:\/\/test-laravel-5-2.dev\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf",
-                "uploadUrl": "http:\/\/test-laravel-5-2.dev\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf&json",
+                "filebrowserImageUploadUrl": "\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf",
+                "uploadUrl": "\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf&json",
                 "extraPlugins": "uploadimage"
             }).on('change', ({editor}) => {
                 editor.updateElement();
