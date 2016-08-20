@@ -2,6 +2,10 @@
 
 @section('title', 'Pagina bewerken')
 
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@append
+
 @section('content_header')
     <p>
         <a href="{{ route('admin.pages.index') }}" class="btn btn-xs btn-primary">

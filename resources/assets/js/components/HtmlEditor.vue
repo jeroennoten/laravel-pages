@@ -17,6 +17,8 @@
     export default {
         props: ['content', 'config'],
         ready() {
+            let token = $('meta[name="csrf-token"]').attr('content');
+
             CKEDITOR.replace(this.$els.ckeditor, {
                 "toolbarGroups": [{
                     "name": "document",
@@ -41,8 +43,8 @@
                     "groups": ["about"]
                 }],
                 "removeButtons": "Save,NewPage,Preview,Print,Templates,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Flash,Smiley,PageBreak,Iframe",
-                "filebrowserImageUploadUrl": "\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf",
-                "uploadUrl": "\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf&json",
+                "filebrowserImageUploadUrl": "\/ckeditor\/images?_token=" + token,
+                "uploadUrl": "\/ckeditor\/images?_token=" + token + "&json",
                 "extraPlugins": "uploadimage"
             }).on('change', ({editor}) => {
                 editor.updateElement();
