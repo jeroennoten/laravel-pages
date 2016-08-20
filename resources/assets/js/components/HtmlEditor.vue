@@ -17,7 +17,34 @@
     export default {
         props: ['content', 'config'],
         ready() {
-            CKEDITOR.replace(this.$els.ckeditor).on('change', ({editor}) => {
+            CKEDITOR.replace(this.$els.ckeditor, {
+                "toolbarGroups": [{
+                    "name": "document",
+                    "groups": ["mode", "document", "doctools"]
+                }, {"name": "document", "groups": ["mode", "document", "doctools"]}, {
+                    "name": "clipboard",
+                    "groups": ["clipboard", "undo"]
+                }, {"name": "editing", "groups": ["find", "selection", "spellchecker", "editing"]}, {
+                    "name": "forms",
+                    "groups": ["forms"]
+                }, "\/", {"name": "basicstyles", "groups": ["basicstyles", "cleanup"]}, {
+                    "name": "paragraph",
+                    "groups": ["list", "indent", "blocks", "align", "bidi", "paragraph"]
+                }, {"name": "links", "groups": ["links"]}, {
+                    "name": "insert",
+                    "groups": ["insert"]
+                }, "\/", {"name": "styles", "groups": ["styles"]}, {
+                    "name": "colors",
+                    "groups": ["colors"]
+                }, {"name": "tools", "groups": ["tools"]}, {"name": "others", "groups": ["others"]}, {
+                    "name": "about",
+                    "groups": ["about"]
+                }],
+                "removeButtons": "Save,NewPage,Preview,Print,Templates,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Flash,Smiley,PageBreak,Iframe",
+                "filebrowserImageUploadUrl": "http:\/\/test-laravel-5-2.dev\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf",
+                "uploadUrl": "http:\/\/test-laravel-5-2.dev\/ckeditor\/images?_token=sPVl4FgU22o91U9GEXnUAz23NO7I5UK8sGkQy7Zf&json",
+                "extraPlugins": "uploadimage"
+            }).on('change', ({editor}) => {
                 editor.updateElement();
                 this.update(this.$els.ckeditor.value);
             });
