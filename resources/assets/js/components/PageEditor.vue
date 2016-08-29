@@ -9,10 +9,10 @@
                     <label>
                         <input type="checkbox" v-model="page.active"> Actief
                     </label>
-                    <p class="help-block" style="margin-bottom: 0;" v-if="page.active">Schakel 'actief' in om de pagina
-                        zichtbaar te maken voor publiek.</p>
-                    <p class="help-block" style="margin-bottom: 0;" v-else>Schakel 'actief' uit om de pagina verborgen
+                    <p class="help-block" style="margin-bottom: 0;" v-if="page.active">Schakel 'actief' uit om de pagina verborgen
                         te maken voor publiek.</p>
+                    <p class="help-block" style="margin-bottom: 0;" v-else>Schakel 'actief' in om de pagina
+                        zichtbaar te maken voor publiek.</p>
                 </div>
             </div>
         </div>

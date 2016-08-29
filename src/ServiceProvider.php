@@ -29,9 +29,7 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishMigrations();
         $this->loadViews();
         $this->publishConfig();
-        $this->publishes([
-            "{$this->path()}/public" => public_path("vendor/{$this->name()}"),
-        ], 'assets');
+        $this->publishPublicAssets();
 
         $routing->registerRoutes();
 
