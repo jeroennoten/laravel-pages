@@ -12,7 +12,6 @@ class TestCase extends OrchestraTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        echo 'database';
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');
         $app['config']->set(
@@ -31,7 +30,6 @@ class TestCase extends OrchestraTestCase
     {
         parent::setUp();
 
-        echo 'migrate';
         $this->artisan(
             'migrate',
             [
