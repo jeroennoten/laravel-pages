@@ -9,4 +9,37 @@ class TestCase extends OrchestraTestCase
     {
         return [ServiceProvider::class];
     }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        echo 'database';
+        // Setup default database to use sqlite :memory:
+        $app['config']->set('database.default', 'testbench');
+        $app['config']->set(
+            'database.connections.testbench',
+            [
+                'driver'   => 'sqlite',
+                'database' => ':memory:',
+                'prefix'   => '',
+            ]
+        );
+
+        $app['view']->addLocation(__DIR__.'/stubs/views');
+    }
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        echo 'migrate';
+        $this->artisan(
+            'migrate',
+            [
+                '--database' => 'testbench',
+                '--realpath' => realpath(__DIR__.'/../database/migrations'),
+            ]
+        );
+
+        $this->withFactories(__DIR__.'/../database/factories');
+    }
 }

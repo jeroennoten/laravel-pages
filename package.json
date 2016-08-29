@@ -8,7 +8,7 @@
     "gulp": "^3.9.1",
     "js-cookie": "^2.1.2",
     "laravel-elixir": "^5.0.0",
-    "laravel-elixir-vueify": "^1.0.3",
+    "laravel-elixir-vueify": "^1.0.6",
     "vue": "^1.0.26",
     "vue-resource": "^0.9.3"
   }

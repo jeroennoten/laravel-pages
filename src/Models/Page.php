@@ -16,10 +16,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property View view
  * @property mixed title
  * @property mixed uri
+ * @property bool active
  */
 class Page extends Model
 {
-    protected $fillable = ['uri'];
+    protected $fillable = ['uri', 'active'];
 
     public static function make($uri = '/')
     {
@@ -65,6 +66,7 @@ class Page extends Model
 
     public function updatePage(array $input)
     {
+        $this->update(['active' => (boolean)$input['active']]);
         $this->updateContents($input['view']['contents']);
     }
 }

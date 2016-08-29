@@ -22,19 +22,14 @@ class Routing
         $this->router->group([
             'namespace' => __NAMESPACE__ . '\Http\Controllers'
         ], function () {
-            $this->registerPageRoutes();
             $this->registerAdminRoutes();
+            $this->registerPageRoutes();
         });
     }
 
     private function registerPageRoutes()
     {
-        try {
-            foreach ($this->pages->all() as $page) {
-                $this->router->get($page->uri, 'PageController@show');
-            }
-        } catch (PDOException $e) {
-        }
+        $this->router->get('{uri}', 'PageController@show')->where('uri', '.*');
     }
 
     private function registerAdminRoutes()

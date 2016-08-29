@@ -44,14 +44,15 @@ class Pages
         }
     }
 
-    /**
-     * @param $uri
-     * @return Page
-     */
-    public function getByUri($uri)
+    public function getByUri($uri, $where = [])
     {
         /** @var Page $page */
-        $page = Page::where('uri', $uri)->first();
+        $page = Page::where('uri', $uri)->where($where)->first();
         return $page;
+    }
+
+    public function getActiveByUri($uri)
+    {
+        return $this->getByUri($uri, ['active' => true]);
     }
 }

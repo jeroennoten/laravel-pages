@@ -1,14 +1,13 @@
 <?php
 
-
 namespace JeroenNoten\LaravelPages\Http\Controllers;
-
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use JeroenNoten\LaravelPages\Contents;
 use JeroenNoten\LaravelPages\Page;
 use JeroenNoten\LaravelPages\Pages;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageController extends Controller
 {
@@ -19,9 +18,12 @@ class PageController extends Controller
         $this->pages = $pages;
     }
 
-    public function show(Request $request)
+    public function show($uri)
     {
-        $page = $this->pages->getByUri($request->path());
+        if (! $page = $this->pages->getActiveByUri($uri)) {
+            throw new NotFoundHttpException;
+        }
+
         return $page->render();
     }
 }

@@ -4,12 +4,11 @@
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         </p>
         <div v-else>
-            <component
-                    :is="componentName"
-                    :content="data"
-                    :config="config"
-                    @remove="remove"
-                    @update="update"
+            <component :is="componentName"
+                       :content="data"
+                       :config="config"
+                       @remove="remove"
+                       @update="update"
             ></component>
         </div>
     </div>
