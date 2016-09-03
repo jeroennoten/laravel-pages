@@ -20,7 +20,8 @@ class Routing
     public function registerRoutes()
     {
         $this->router->group([
-            'namespace' => __NAMESPACE__ . '\Http\Controllers'
+            'namespace' => __NAMESPACE__ . '\Http\Controllers',
+            'middleware' => 'web',
         ], function () {
             $this->registerAdminRoutes();
             $this->registerPageRoutes();
@@ -37,7 +38,7 @@ class Routing
         $this->router->group([
             'prefix' => 'admin/pages',
             'as' => 'admin.pages.',
-            'middleware' => ['web', 'auth'],
+            'middleware' => 'auth',
             'namespace' => 'Admin',
         ], function (Router $router) {
 
