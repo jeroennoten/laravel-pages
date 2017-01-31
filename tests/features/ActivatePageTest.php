@@ -48,12 +48,13 @@ class ActivatePageTest extends TestCase
         $this->seeInDatabase('pages', ['active' => false, 'id' => $this->activePage->id]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     */
     public function testCannotVisitInactivePage()
     {
-        $this->visit('inactive');
+        try {
+            $this->visit('inactive');
+            $this->fail('Can visit incative page');
+        } catch (Exception $e) {
+        }
     }
 
     public function testCanVisitActivePage()
