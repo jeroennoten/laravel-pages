@@ -20,6 +20,9 @@
                 this.$emit('remove');
             }
         },
+        ready () {
+            this.$emit('update', this.content || '');
+        },
         watch: {
             content(value) {
                 this.$emit('update', value);

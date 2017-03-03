@@ -19,7 +19,11 @@
         ready() {
             let token = $('meta[name="csrf-token"]').attr('content');
 
-            CKEDITOR.replace(this.$els.ckeditor, {
+            let handler = ({editor}) => {
+                editor.updateElement();
+                this.update(this.$els.ckeditor.value);
+            }
+            let editor = CKEDITOR.replace(this.$els.ckeditor, {
                 "toolbarGroups": [{
                     "name": "document",
                     "groups": ["mode", "document", "doctools"]
@@ -46,10 +50,9 @@
                 "filebrowserImageUploadUrl": "\/ckeditor\/images?_token=" + token,
                 "uploadUrl": "\/ckeditor\/images?_token=" + token + "&json",
                 "extraPlugins": "uploadimage"
-            }).on('change', ({editor}) => {
-                editor.updateElement();
-                this.update(this.$els.ckeditor.value);
             });
+            editor.on('change', handler);
+            editor.on('instanceReady', handler);
         },
         methods: {
             update(value) {

@@ -31,6 +31,6 @@ class StringProvider implements ContentProvider
 
     public function updateContent(Content $content, $data)
     {
-        $content->value = $data;
+        $content->value = $data ?: '';
     }
 }

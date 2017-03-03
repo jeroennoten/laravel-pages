@@ -36,8 +36,11 @@
             }
         },
         computed: {
+            type() {
+                return this.config.type || this.content.type;
+            },
             componentName() {
-                return `${this.content.type}Editor`;
+                return `${this.type}Editor`;
             },
             config() {
                 return this.section.types[this.content.type].config

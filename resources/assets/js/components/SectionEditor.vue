@@ -1,11 +1,10 @@
 <template>
     <div class="form-group">
         <label v-if="section.name">{{ section.name }}</label>
-        <content-editor v-for="content in view.contents"
-                        v-if="content.section == section.id"
+        <content-editor v-for="content in contents"
                         :content="content"
                         :section="section"
-                        @remove="remove($index)"
+                        @remove="remove(content)"
                         @update="update"
         ></content-editor>
         <div class="form-group" v-if="adding">
@@ -64,8 +63,8 @@
                 });
                 this.update();
             },
-            remove(i) {
-                this.view.contents.splice(i, 1);
+            remove(content) {
+                this.view.contents.splice(this.view.contents.indexOf(content), 1);
                 this.update();
             },
             update() {

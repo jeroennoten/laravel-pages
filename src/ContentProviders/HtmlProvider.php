@@ -38,6 +38,10 @@ class HtmlProvider implements ContentProvider
 
     public function updateContent(Content $content, $data)
     {
+        $dir = dirname($this->getPath($content));
+        if (! file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
         file_put_contents($this->getPath($content), $data);
     }
 
@@ -49,7 +53,7 @@ class HtmlProvider implements ContentProvider
 
     private function value(Content $content)
     {
-        if (!isset($content->value)) {
+        if (! isset($content->value)) {
             $content->value = uniqid();
         }
         return $content->value;

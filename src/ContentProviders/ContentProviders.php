@@ -6,12 +6,21 @@ namespace JeroenNoten\LaravelPages\ContentProviders;
 
 class ContentProviders
 {
-    private static $providers = [];
+    private $providers = [];
+    /**
+     * @var array
+     */
+    private $customTypes;
 
-    public static function register(ContentProvider $provider)
+    public function __construct(array $customTypes = [])
+    {
+        $this->customTypes = $customTypes;
+    }
+
+    public function register(ContentProvider $provider)
     {
         foreach ($provider->provides() as $type) {
-            self::$providers[$type] = $provider;
+            $this->providers[$type] = $provider;
         }
     }
 
@@ -19,8 +28,12 @@ class ContentProviders
      * @param string $type
      * @return ContentProvider
      */
-    public static function get($type)
+    public function get($type)
     {
-        return self::$providers[$type];
+        if (isset($this->customTypes[$type])) {
+            $type = $this->customTypes[$type];
+        }
+
+        return $this->providers[$type];
     }
 }

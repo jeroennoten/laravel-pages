@@ -17,7 +17,7 @@ class DropLayoutColumnFromPagesTable extends Migration {
     public function down()
     {
         Schema::table('pages', function (Blueprint $table) {
-            $table->string('layout');
+            $table->string('layout')->default('');
         });
     }
 

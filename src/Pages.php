@@ -40,7 +40,7 @@ class Pages
         try {
             $this->pages = Page::all();
         } catch (QueryException $e) {
-            $this->pages = [];
+            $this->pages = new Collection;
         }
     }
 

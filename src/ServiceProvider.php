@@ -2,6 +2,7 @@
 
 namespace JeroenNoten\LaravelPages;
 
+use Illuminate\Config\Repository;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -33,9 +34,11 @@ class ServiceProvider extends BaseServiceProvider
 
         $routing->registerRoutes();
 
-        ContentProviders::register(new StringProvider);
-        ContentProviders::register(new HtmlProvider);
-        ContentProviders::register(new ViewProvider);
+        /** @var ContentProviders $contentProviders */
+        $contentProviders = $this->getContainer()->make(ContentProviders::class);
+        $contentProviders->register(new StringProvider);
+        $contentProviders->register(new HtmlProvider);
+        $contentProviders->register(new ViewProvider);
 
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add([
@@ -52,11 +55,16 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->register(AdminLteServiceProvider::class);
         $this->app->register(CkEditorServiceProvider::class);
         $this->app->singleton(Pages::class);
+        $this->app->singleton(ContentProviders::class, function () {
+            /** @var array $views */
+            $views = config('pages.views');
+            return new ContentProviders($this->getCustomTypes($views));
+        });
     }
 
     protected function path(): string
     {
-        return __DIR__ . '/..';
+        return __DIR__.'/..';
     }
 
     protected function name(): string
@@ -79,5 +87,24 @@ class ServiceProvider extends BaseServiceProvider
     protected function getContainer()
     {
         return $this->app;
+    }
+
+    private function getCustomTypes(array $views)
+    {
+        $customTypes = [];
+
+        foreach ($views as $view) {
+            foreach ($view['sections'] as $section) {
+                foreach ($section['contents']['types'] as $id => $config) {
+                    if (is_array($config)) {
+                        if (isset($config['type'])) {
+                            $customTypes[$id] = $config['type'];
+                        }
+                    }
+                }
+            }
+        }
+
+        return $customTypes;
     }
 }

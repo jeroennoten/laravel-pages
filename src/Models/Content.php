@@ -27,7 +27,7 @@ class Content extends Model
         parent::boot();
 
         static::saving(function (Content $content) {
-            if (isset($content->attributes['content'])) {
+            if (array_key_exists('content', $content->attributes)) {
                 $content->getContentProvider()->updateContent($content, $content->attributes['content']);
                 unset($content->attributes['content']);
             }
@@ -59,6 +59,8 @@ class Content extends Model
 
     private function getContentProvider()
     {
-        return ContentProviders::get($this->type);
+        /** @var ContentProviders $contentProviders */
+        $contentProviders = app(ContentProviders::class);
+        return $contentProviders->get($this->type);
     }
 }

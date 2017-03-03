@@ -48,9 +48,14 @@ return [
                             'html' => [
                                 'name' => 'Tekst met opmaak'
                             ],
-                            'view' => [
+                            'latest_news' => [
+                                'type' => 'view',
                                 'name' => 'Laatste nieuws',
                                 'layouts' => ['news.latest']
+                            ],
+                            'view' => [
+                                'name' => 'Sectie',
+                                'layouts' => ['partials.section']
                             ]
                         ],
                         'max' => 1,
