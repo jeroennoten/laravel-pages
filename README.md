@@ -34,6 +34,6 @@
 
 Publish the public assets:
 
-    ```
-    php artisan vendor:publish --tag=pages-public --force
-    ```
+```
+php artisan vendor:publish --tag=pages-public --force
+```
