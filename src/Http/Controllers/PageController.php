@@ -18,7 +18,7 @@ class PageController extends Controller
         $this->pages = $pages;
     }
 
-    public function show($uri)
+    public function show($uri = '/')
     {
         if (! $page = $this->pages->getActiveByUri($uri)) {
             throw new NotFoundHttpException;

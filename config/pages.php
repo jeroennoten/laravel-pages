@@ -7,6 +7,33 @@ return [
             'name' => 'Pagina',
             'sections' => [
                 'title' => [
+                    'name' => 'Paginatitel',
+                    'contents' => [
+                        'types' => ['string'],
+                        'max' => 1,
+                    ],
+                ],
+                'main' => [
+                    'name' => 'Inhoud',
+                    'contents' => [
+                        'types' => [
+                            'view' => [
+                                'name' => 'Blok',
+                                'layouts' => ['partials.box']
+                            ]
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'occassions.latest' => [
+            'name' => 'Laatste occassions',
+            'sections' => []
+        ],
+        'partials.box' => [
+            'name' => 'Blok',
+            'sections' => [
+                'title' => [
                     'name' => 'Titel',
                     'contents' => [
                         'types' => ['string'],
@@ -17,51 +44,26 @@ return [
                     'name' => 'Inhoud',
                     'contents' => [
                         'types' => [
-                            'view' => ['layouts' => ['partials.section']]
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        'news.latest' => [
-            'name' => 'Laatste nieuws',
-            'sections' => []
-        ],
-        'partials.section' => [
-            'name' => 'Sectie',
-            'sections' => [
-                'title' => [
-                    'name' => 'Titel',
-                    'contents' => [
-                        'types' => [
-                            'string' => [
-                                'css' => 'font-size: 24px; height: auto;'
-                            ],
-                        ],
-                        'max' => 1,
-                    ]
-                ],
-                'content' => [
-                    'name' => 'Inhoud',
-                    'contents' => [
-                        'types' => [
                             'html' => [
                                 'name' => 'Tekst met opmaak'
                             ],
-                            'latest_news' => [
-                                'type' => 'view',
-                                'name' => 'Laatste nieuws',
-                                'layouts' => ['news.latest']
-                            ],
                             'view' => [
-                                'name' => 'Sectie',
-                                'layouts' => ['partials.section']
-                            ]
+                                'name' => 'Laatste occassions',
+                                'layouts' => ['occassions.latest']
+                            ],
+                            'services' => [
+                                'type' => 'view',
+                                'name' => 'Onze diensten',
+                                'layouts' => ['partials.services']
+                            ],
                         ],
-                        'max' => 1,
                     ],
                 ],
             ]
-        ]
-    ]
+        ],
+        'partials.services' => [
+            'name' => 'Services',
+            'sections' => []
+        ],
+    ],
 ];
